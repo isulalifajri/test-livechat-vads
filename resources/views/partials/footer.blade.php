@@ -5,7 +5,7 @@
         <script>
           document.write(new Date().getFullYear());
         </script>
-        , Sistem APP
+        , LiveChat CMS
       </div>
     </div>
   </footer>

@@ -27,15 +27,6 @@
             </div>
           @enderror
       </div>
-
-       <div class="mb-1">
-      <div class="captcha">
-        <span class="me-1">{!! captcha_img('math') !!}</span>
-        <button type="button" class="btn btn-danger reload" id="reload">
-          &#x21bb;
-        </button>
-      </div>
-    </div>
       
       <div class="mb-3 form-password-toggle">
         <div class="d-flex justify-content-between">
