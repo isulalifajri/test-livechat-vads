@@ -1,0 +1,11 @@
+span.pr p{
+    margin-bottom: 0;
+}
+
+.truncate-2-lines {
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Membatasi teks menjadi 2 baris */
+    overflow: hidden;
+}
