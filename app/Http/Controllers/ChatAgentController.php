@@ -25,6 +25,25 @@ class ChatAgentController extends Controller
         return view('cms.livechat.index', compact('sessions'));
     }
 
+    public function reloadList()
+    {
+        $sessions = ChatSession::with([
+            'customer',
+            'agent'
+        ])
+        ->orderByRaw("
+            CASE
+                WHEN status = 'waiting' THEN 1
+                WHEN status = 'active' THEN 2
+                WHEN status = 'closed' THEN 3
+            END
+        ")
+        ->latest()
+        ->get();
+
+        return view('cms.livechat.list', compact('sessions'))->render();
+    }
+
     public function show($id)
     {
         $session = ChatSession::with([

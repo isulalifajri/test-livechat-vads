@@ -46,11 +46,15 @@ Route::group(['middleware' => 'guest'], function () {
    
 });
 
-// logout
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
 
     Route::prefix('chat/livechat')->group(function () {
+
+
+        // reload list realtime
+        Route::get('/reload/list', [ChatAgentController::class, 'reloadList'])
+            ->name('chat.livechat.reload');
 
         // list livechat
         Route::get('/',[ChatAgentController::class, 'index'])
@@ -74,6 +78,7 @@ Route::middleware('auth')->group(function () {
 
     });
 
+    // logout
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 
