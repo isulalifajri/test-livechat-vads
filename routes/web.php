@@ -24,13 +24,19 @@ Route::get('/', function () {
 })->name('home');
 
 // customer chat
+Route::get('reload-captcha',[RegisterController::class,'reloadCaptcha'])->name('reloadCaptcha');
 Route::post('/livechat/register', [LiveChatController::class, 'register'])
     ->name('livechat.register');
 Route::get('/queue/{id}', [LiveChatController::class, 'queue'])
     ->name('queue.room');
 Route::get('/chat-session/{id}/status', [LiveChatController::class, 'status'])
     ->name('chat.status');
-Route::get('reload-captcha',[RegisterController::class,'reloadCaptcha'])->name('reloadCaptcha');
+    // customer realtime messages
+Route::get('/livechat/{id}/messages', [LiveChatController::class, 'messages'])
+    ->name('livechat.messages');
+    // customer send message
+Route::post('/livechat/{id}/send', [LiveChatController::class, 'send'])
+    ->name('livechat.send');
 
 // service desk
 Route::group(['middleware' => 'guest'], function () {
