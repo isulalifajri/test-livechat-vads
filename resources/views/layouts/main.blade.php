@@ -104,6 +104,10 @@
         .bg-notif{
           background: #F0F3F7;
         }
+
+        .table th{
+          text-transform: none;
+        }
      </style>
 
      @stack('css')

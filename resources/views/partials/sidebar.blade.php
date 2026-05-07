@@ -43,6 +43,18 @@
         </ul>
 
       </li>
+
+      <li class="menu-item {{ Request::is('master/customer*') ? 'active' : '' }}">
+          <a href="{{ route('master.customer') }}" class="menu-link">
+
+              <i class="menu-icon tf-icons bx bx-user"></i>
+
+              <div>
+                  Master Customer
+              </div>
+
+          </a>
+      </li>
       
     </ul>
   </aside>

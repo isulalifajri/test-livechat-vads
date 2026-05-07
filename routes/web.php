@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LiveChatController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MasterCustomerController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -77,6 +78,13 @@ Route::middleware('auth')->group(function () {
             ->name('chat.livechat.status');
 
     });
+
+    // master customer getData
+    Route::get('master/customer', [MasterCustomerController::class, 'masterCustomer'])
+        ->name('master.customer');
+    Route::get('master/customer/data', [MasterCustomerController::class, 'masterCustomerData'])
+        ->name('master.customer.data');
+
 
     // logout
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
