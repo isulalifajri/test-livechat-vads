@@ -56,8 +56,8 @@ class LiveChatController extends Controller
         if (
             $session->status == 'waiting' &&
             $session->queue_start &&
-            // Carbon::parse($session->queue_start)->addMinutes(3)->isPast()
-            Carbon::parse($session->queue_start)->addSeconds(20)->isPast()
+            Carbon::parse($session->queue_start)->addMinutes(3)->isPast()
+            // Carbon::parse($session->queue_start)->addSeconds(20)->isPast()
         ) {
 
             $session->update([

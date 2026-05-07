@@ -150,14 +150,14 @@ class ChatAgentController extends Controller
                 $lastMessage->message != 'Mohon maaf, karena tidak ada respons chat dari Bapak/Ibu, saya akhiri chat ini.' &&
 
                 // TEST
-                Carbon::parse($lastMessage->created_at)
-                    ->addSeconds(10)
-                    ->isPast()
+                // Carbon::parse($lastMessage->created_at)
+                //     ->addSeconds(10)
+                //     ->isPast()
 
                 // REAL
-                // Carbon::parse($lastMessage->created_at)
-                //     ->addMinutes(3)
-                //     ->isPast()
+                Carbon::parse($lastMessage->created_at)
+                    ->addMinutes(3)
+                    ->isPast()
             ) {
 
                 Message::create([
@@ -186,14 +186,14 @@ class ChatAgentController extends Controller
                 $lastMessage->message == 'Saya masih menunggu respons jawaban chat Bapak/Ibu.' &&
 
                 // TEST
-                Carbon::parse($lastMessage->created_at)
-                    ->addSeconds(10)
-                    ->isPast()
+                // Carbon::parse($lastMessage->created_at)
+                //     ->addSeconds(10)
+                //     ->isPast()
 
                 // REAL
-                // Carbon::parse($lastMessage->created_at)
-                //     ->addMinutes(1)
-                //     ->isPast()
+                Carbon::parse($lastMessage->created_at)
+                    ->addMinutes(1)
+                    ->isPast()
             ) {
 
                 Message::create([
