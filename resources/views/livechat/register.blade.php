@@ -5,7 +5,7 @@
 </div>
 
 <div class="m-3">
-  <form class="mb-1" action="" method="POST">
+  <form class="mb-1"  action="{{ route('livechat.register') }}" method="POST">
     @csrf
 
     <!-- NAME -->
@@ -16,8 +16,8 @@
         class="form-control @error('name') is-invalid @enderror"
         id="name"
         name="name"
+        value="{{ old('name') }}"
         placeholder="Input Your Name"
-        required
       />
       @error('name')
         <div class="invalid-feedback d-block">
@@ -34,8 +34,8 @@
         class="form-control @error('email') is-invalid @enderror"
         id="email"
         name="email"
+        value="{{ old('email') }}"
         placeholder="Input Your Email"
-        required
       />
       @error('email')
         <div class="invalid-feedback d-block">
@@ -52,8 +52,8 @@
         class="form-control @error('phone') is-invalid @enderror"
         id="phone"
         name="phone"
+        value="{{ old('phone') }}"
         placeholder="Input Your Phone"
-        required
       />
       @error('phone')
         <div class="invalid-feedback d-block">
@@ -64,7 +64,7 @@
 
     <div class="mb-1">
       <div class="captcha">
-        <span class="me-1">{!! captcha_img('inverse') !!}</span>
+        <span class="me-1">{!! captcha_img('mini') !!}</span>
         <button type="button" class="btn btn-danger reload" id="reload">
           &#x21bb;
         </button>
@@ -76,7 +76,7 @@
         class="form-control @error('captcha') is-invalid @enderror"
         id="captcha"
         name="captcha"
-        placeholder="Enter Captcha" required
+        placeholder="Enter Captcha"
         />
         @error('captcha')
           <div class="invalid-feedback d-block">

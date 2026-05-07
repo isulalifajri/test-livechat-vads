@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LiveChatController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +20,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 // customer
+Route::post('/livechat/register', [LiveChatController::class, 'register'])
+    ->name('livechat.register');
+Route::get('/queue/{id}', [LiveChatController::class, 'queue'])
+    ->name('queue.room');
+Route::get('/chat-session/{id}/status', [LiveChatController::class, 'status'])
+    ->name('chat.status');
 Route::get('reload-captcha',[RegisterController::class,'reloadCaptcha'])->name('reloadCaptcha');
 
 // service desk

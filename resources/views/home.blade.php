@@ -115,8 +115,8 @@
   </div>
 
   <!-- CHAT BOX -->
-  <div id="chatBox">
-     @include('auth.register')
+  <div id="chatBox" style="overflow: auto;height:491px">
+     @include('livechat.index')
   </div>
 
   <!-- JS -->
@@ -129,35 +129,32 @@
 
   <!-- CHAT SCRIPT -->
   <script>
-    const toggle = document.getElementById("chatToggle");
-    const box = document.getElementById("chatBox");
-    const input = document.getElementById("chatInput");
-    const content = document.getElementById("chatContent");
-    const sendBtn = document.getElementById("sendBtn");
+  const toggle = document.getElementById("chatToggle");
+  const box = document.getElementById("chatBox");
 
-    toggle.addEventListener("click", () => {
-      box.classList.toggle("show");
-    });
+  // cek status terakhir
+  if (localStorage.getItem("chat_open") === "true") {
+    box.classList.add("show");
+  }
 
-    sendBtn.addEventListener("click", sendMessage);
+  toggle.addEventListener("click", () => {
+    box.classList.toggle("show");
 
-    input.addEventListener("keypress", function (e) {
-      if (e.key === "Enter") sendMessage();
-    });
+    // simpan status
+    localStorage.setItem(
+      "chat_open",
+      box.classList.contains("show")
+    );
+  });
 
-    function sendMessage() {
-      const msg = input.value.trim();
-      if (!msg) return;
+  // kalau ada validation error
+  const hasError = @json($errors->any());
 
-      content.innerHTML += `<div style="text-align:right; margin:5px 0;">${msg}</div>`;
-      input.value = "";
-
-      setTimeout(() => {
-        content.innerHTML += `<div style="margin:5px 0;">Terima kasih, pesan diterima 👍</div>`;
-        content.scrollTop = content.scrollHeight;
-      }, 500);
-    }
-  </script>
+  if (hasError) {
+    box.classList.add("show");
+    localStorage.setItem("chat_open", true);
+  }
+</script>
 
   @stack('js')
 
