@@ -27,11 +27,21 @@
 
     
 
-      <li class="menu-item {{ Request::segment(1) === 'approval' ? 'active' : '' }}">
-        <a href="" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-collection"></i>
-          <div data-i18n="Persetujuan">Persetujuan</div>
+      <!-- Layouts -->
+      <li class="menu-item {{ Request::is('chat*') ? 'active' : '' }}">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Data Master">Chat</div>
         </a>
+  
+        <ul class="menu-sub">
+          <li class="menu-item  {{ Request::is('chat/livechat*') ? 'active' : '' }}">
+            <a href="{{ route('chat.livechat') }}" class="menu-link">
+              <div data-i18n="livechat">Livechat</div>
+            </a>
+          </li>
+        </ul>
+
       </li>
       
     </ul>

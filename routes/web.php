@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatAgentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LiveChatController;
@@ -22,7 +23,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-// customer
+// customer chat
 Route::post('/livechat/register', [LiveChatController::class, 'register'])
     ->name('livechat.register');
 Route::get('/queue/{id}', [LiveChatController::class, 'queue'])
@@ -41,8 +42,33 @@ Route::group(['middleware' => 'guest'], function () {
 
 // logout
 Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+
+    Route::prefix('chat/livechat')->group(function () {
+
+        // list livechat
+        Route::get('/',[ChatAgentController::class, 'index'])
+            ->name('chat.livechat');
+
+        // detail chat
+        Route::get('/{id}', [ChatAgentController::class, 'show'])
+            ->name('chat.livechat.show');
+
+        // realtime messages
+        Route::get('/{id}/messages', [ChatAgentController::class, 'messages'])
+            ->name('chat.livechat.messages');
+
+        // send message
+        Route::post('/{id}/send',[ChatAgentController::class, 'send'])
+            ->name('chat.livechat.send');
+
+        // check status + idle
+        Route::get('/{id}/status',[ChatAgentController::class, 'status'])
+            ->name('chat.livechat.status');
+
+    });
+
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
 
 });
